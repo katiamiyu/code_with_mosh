@@ -1,20 +1,20 @@
 {
-  "name": "4-working_with_restful_api",
-  "version": "2.1.0",
-  "description": "",
+  "name": "vidly",
+  "version": "1.1.0",
+  "description": "video renting app",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "author": "katiamiyu",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "config": "^3.3.12",
     "debug": "^4.4.0",
     "express": "^4.21.2",
     "joi": "^17.13.3",
+    "mongoose": "^8.12.2",
     "morgan": "^1.10.0"
   }
 }
