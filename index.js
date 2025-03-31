@@ -4,6 +4,7 @@ const config = require('config');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
+const customers = require('./routes/customers');
 const express = require('express');
 const server = express();
 
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV==='development') {
   console.log('morgan loaded');
 }
 server.use('/api/genres', genres);
+server.use('/api/customers', customers);
 
 const port = process.env.PORT || 3000;
 server.listen(port, ()=>{
