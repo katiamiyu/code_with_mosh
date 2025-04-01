@@ -1,4 +1,4 @@
-const {Customer, Schema} = require('../models/customers');
+const {Customer, Schema} = require('../models/customer');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();

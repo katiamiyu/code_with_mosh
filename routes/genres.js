@@ -1,4 +1,4 @@
-const {Genre, Schema} = require('../models/genres');
+const {Genre, Schema} = require('../models/genre');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
