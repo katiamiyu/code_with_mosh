@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
+const movies = require('./routes/movies');
 const express = require('express');
 const server = express();
 
@@ -16,12 +17,13 @@ mongoose.connect(`mongodb+srv://katiamiyu:${config.get('password')}@enlightenmen
 // middlewares
 server.use(express.json());
 server.use(express.urlencoded({extended:true}));
-if (process.env.NODE_ENV==='development') {
+if (server.get('env')==='development') {
   server.use(morgan('tiny'));
   console.log('morgan loaded');
 }
 server.use('/api/genres', genres);
 server.use('/api/customers', customers);
+server.use('/api/movies', movies);
 
 const port = process.env.PORT || 3000;
 server.listen(port, ()=>{

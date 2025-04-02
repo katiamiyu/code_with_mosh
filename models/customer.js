@@ -2,7 +2,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 // joi validation schema
-const customerSchema = Joi.object({
+const customerJoiSchema = Joi.object({
   name: Joi.string().min(5).max(255).required(),
   username: Joi.string().min(5).max(15).required(),
   phone: Joi.string().min(10).max(15).required(),
@@ -43,4 +43,4 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
 }));
 
 exports.Customer = Customer;
-exports.Schema = customerSchema;
+exports.Schema = customerJoiSchema;
