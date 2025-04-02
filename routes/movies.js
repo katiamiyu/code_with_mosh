@@ -12,7 +12,7 @@ router.post('/', async (req,res)=>{
   try {
     const genre = await Genre.findById(req.body.genreId);
     
-    if(!genre) return res.status(400).send(`genre with id: ${value.genreId} does not exist`);
+    if(!genre) return res.status(404).send(`genre with id: ${value.genreId} can not be found`);
     const movie = new Movie({
       title: value.title,
       genre: {
@@ -35,6 +35,6 @@ router.get('/', async (req, res)=>{
   }catch(error){
     return res.status(500).send(error.message);
   }
-})
+});
 
 module.exports = router;

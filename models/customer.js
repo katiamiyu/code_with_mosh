@@ -18,20 +18,16 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
     required: true,
     lowercase: true
   }, 
-  username: {
-    type: String,
-    minlength: 5,
-    maxlength: 15,
-    required: true,
-    lowercase: true
-  }, 
   phone: {
     type: String,
     minlength: 10,
     maxlength: 15,
     required: true
   }, 
-  isgold: Boolean, 
+  isgold: {
+    type: Boolean,
+    default: false
+  },
   email: {
     type: String,
     match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
