@@ -6,9 +6,11 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req,res)=>{
+  const session = await mongoose.startSession();
   const {error, value} = Schema.validate(req.body);
   if(error) return res.status(400).send(error.details[0].message);
   try{
+    await session.startTransaction();
     const movie = await Movie.findById(value.movieId);
     if(!movie) return res.status(404).send(`movie with id: ${value.movieId} can not be found`);
     
@@ -29,13 +31,16 @@ router.post('/', async (req,res)=>{
       },
     });
     
-    await rental.save();
+    await rental.save({session});
     movie.numberInStock--;
-    await movie.save();
-    
+    await movie.save({session});
+    await session.commitTransaction();
+    session.endSession()
     res.status(201).send(rental);
     
   }catch(error){
+    await session.abortTransaction();
+    session.endSession();
     res.status(500).send(error.message);
   }
 });
