@@ -35,7 +35,7 @@ router.post('/', async (req,res)=>{
     movie.numberInStock--;
     await movie.save({session});
     await session.commitTransaction();
-    session.endSession()
+    session.endSession();
     res.status(201).send(rental);
     
   }catch(error){

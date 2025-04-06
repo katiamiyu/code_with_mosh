@@ -1,9 +1,10 @@
 const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 
 const rentalJoiSchema = Joi.object({
-  customerId: Joi.string().required(),
-  movieId: Joi.string().required(),
+  customerId: Joi.objectId().required(),
+  movieId: Joi.objectId().required(),
   dateReturned: Joi.date(),
   rentalFee: Joi.number()
 });
