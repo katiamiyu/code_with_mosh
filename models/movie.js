@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const movieJoiSchema = Joi.object({
   title: Joi.string().min(5).max(255).required(),
-  genreId: Joi.string().required(),
+  genreId: Joi.objectId().required(),
   numberInStock: Joi.number().required(),
   dailyRentalRate: Joi.number().required()
 });
@@ -35,7 +35,7 @@ const movie = new mongoose.Schema({
   }
 });
 
-const Movie = new mongoose.model('Movie', movie);
+const Movie = mongoose.model('Movie', movie);
 
 exports.Movie = Movie;
 exports.Schema = movieJoiSchema;
