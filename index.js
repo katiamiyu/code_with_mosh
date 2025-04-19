@@ -10,6 +10,7 @@ const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const users = require('./routes/users');
+const auth = require('./routes/auth');
 const express = require('express');
 const server = express();
 
@@ -30,6 +31,7 @@ server.use('/api/customers', customers);
 server.use('/api/movies', movies);
 server.use('/api/rentals', rentals);
 server.use('/api/users', users);
+server.use('/api/auth', auth);
 
 const port = process.env.PORT || 3000;
 server.listen(port, ()=>{
