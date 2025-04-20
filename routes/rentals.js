@@ -44,5 +44,9 @@ router.post('/', async (req,res)=>{
     res.status(500).send(error.message);
   }
 });
+router.get('/', async (req,res)=>{
+  const rentals = await Rental.find().sort('customer.name');
+  res.status(200).send(rentals);
+})
 
 module.exports = router;

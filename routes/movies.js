@@ -9,32 +9,23 @@ router.post('/', async (req,res)=>{
   
   if(error) return res.status(400).send(error.details[0].message);
   
-  try {
-    const genre = await Genre.findById(req.body.genreId);
-    
-    if(!genre) return res.status(404).send(`genre with id: ${value.genreId} can not be found`);
-    const movie = new Movie({
-      title: value.title,
-      genre: {
-        _id: genre.id,
-        name: genre.name
-      },
-      numberInStock: value.numberInStock,
-      dailyRentalRate: value.dailyRentalRate
-    });
-    await movie.save();
-    res.status(201).send(movie);
-  }catch(error){
-    res.status(500).send(error.message);
-  }
+  const genre = await Genre.findById(req.body.genreId);
+  
+  if(!genre) return res.status(404).send(`genre with id: ${value.genreId} can not be found`);
+  const movie = new Movie({
+    title: value.title,
+    genre: {
+      _id: genre.id,
+      name: genre.name
+    },
+    numberInStock: value.numberInStock,
+    dailyRentalRate: value.dailyRentalRate
+  });
+  await movie.save();
 });
 router.get('/', async (req, res)=>{
-  try {
-    const movies = await Movie.find();
-    res.status(200).send(movies);
-  }catch(error){
-    return res.status(500).send(error.message);
-  }
+  const movies = await Movie.find();
+  res.status(200).send(movies);
 });
 
 module.exports = router;

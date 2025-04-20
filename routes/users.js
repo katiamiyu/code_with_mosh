@@ -15,7 +15,8 @@ router.post('/', async (req,res)=>{
   
   user = new User(_.pick(value, ['name','email','password']));
   await user.save();
-  res.status(201).send(_.pick(value, ['name', 'email']));
+  const token = user.generateAuthToken();
+  res.header('x-auth-token', token).status(201).send(_.pick(value, ['name', 'email']));
 });
 router.get('/', async (req,res)=>{
   const users = await User.find().sort({name: 1});
