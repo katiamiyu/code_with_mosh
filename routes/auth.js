@@ -17,11 +17,9 @@ router.post('/', async (req,res)=>{
 
   if(!user) return res.status(400).send('invalid email or password');
   
-  try{
-    const dcrypt = await bcrypt.compare(value.password, user.password);
-  }catch(ex){
-    res.status(400).send(ex.message);
-  }
+  const dcrypt = await bcrypt.compare(value.password, user.password);
+  if(!dcrypt) return res.status(400).send('invalid email or password');
+
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(token);
 });
