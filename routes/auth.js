@@ -21,7 +21,7 @@ router.post('/', async (req,res)=>{
   if(!dcrypt) return res.status(400).send('invalid email or password');
 
   const token = user.generateAuthToken();
-  res.header('x-auth-token', token).send(token);
+  res.status(200).send(token);
 });
 
 module.exports = router;
